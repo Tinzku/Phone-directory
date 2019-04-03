@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 let persons = [
   {
@@ -27,8 +28,10 @@ let persons = [
 
 app.use(bodyParser.json())
 
+app.use(cors())
+
 app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
+  res.send('<h1>Phonedirectory.</h1>')
 })
 
 app.get('/api/persons', (req, res) => {
@@ -62,15 +65,16 @@ const generateId = () => {
 app.post('/persons', (req, res) => {
   const body = req.body
 
-  if(body.name === undefined){
-    return res.status(400).json({error: 'Name missing!'})
+  if(body.name === undefined || body.number === undefined){
+    return res.status(400).json({Error: 'Name or number is missing!'})
   }
 
-  if(body.number === undefined){ // Ei toimi
-    return res.status(400).json({error: 'Number missing!'})
-  }
-
-  // Estä, jos lisättävissä oleva nimi on jo luettelossa || return Response.status(400).json({error: 'Name must be unique!'})
+ /* Estä, jos lisättävissä oleva nimi on jo luettelossa || return Response.status(400).json({error: 'Name must be unique!'})
+  for(let i = 0; i < body.persons.length; i++){
+    if(body.name === body.persons[i].name) {
+      return Response.status(400).json({error: 'Name must be unique!'})
+    }
+  } */
 
   const person = {
     id: generateId(),
@@ -83,7 +87,7 @@ app.post('/persons', (req, res) => {
   res.json(person)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

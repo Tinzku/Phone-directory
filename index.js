@@ -69,12 +69,11 @@ app.post('/persons', (req, res) => {
     return res.status(400).json({Error: 'Name or number is missing!'})
   }
 
- /* Estä, jos lisättävissä oleva nimi on jo luettelossa || return Response.status(400).json({error: 'Name must be unique!'})
-  for(let i = 0; i < body.persons.length; i++){
-    if(body.name === body.persons[i].name) {
-      return Response.status(400).json({error: 'Name must be unique!'})
+  for(let i = 0; i < persons.length; i++){
+    if(body.name === persons[i].name) {
+      return res.status(400).json({error: 'Name must be unique!'})
     }
-  } */
+  }
 
   const person = {
     id: generateId(),

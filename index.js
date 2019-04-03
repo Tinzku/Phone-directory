@@ -31,7 +31,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.send('<h1>Phonedirectory.</h1>')
+  res.send('<h1>Phonedirectory backend.</h1>')
 })
 
 app.get('/api/persons', (req, res) => {
@@ -48,7 +48,7 @@ app.get('/api/persons/:id', (req, res) => {
   }
 })
 
-app.delete('/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter(person => person.id !== id)
 
@@ -62,7 +62,7 @@ const generateId = () => {
   return maxId
 }
 
-app.post('/persons', (req, res) => {
+app.post('/api/persons', (req, res) => {
   const body = req.body
 
   if(body.name === undefined || body.number === undefined){

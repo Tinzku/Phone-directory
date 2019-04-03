@@ -20,7 +20,10 @@
   "homepage": "https://github.com/Tinzku/phone-directory#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-scripts": "2.1.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
